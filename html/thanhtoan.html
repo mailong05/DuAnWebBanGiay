@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link id="logo" rel="icon" href="../image/logo.png">
+    <link rel="stylesheet" href="../css/thanhtoan.css">
+    <link rel="stylesheet" href="/DuAn/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <img id="logo" src="../image/logo.png" alt="logo">
+        <div class="row row-cols-1 row-cols-md-3 gap-3">
+            <div class="col">
+                <h4>Thông tin mua hàng</h4>
+                <form id="form-infor">
+                    <input class="form-control" type="text" name="email" id="email" placeholder="Nhập email">
+                    <input class="form-control" type="text" name="name" id="name" placeholder="Họ và tên">
+                    <input class="form-control" type="text" name="phone" id="phone" placeholder="Số điện thoại">
+                    <input class="form-control" type="text" name="address" id="address" placeholder="Địa chỉ">
+                    <textarea class="form-text" name="ghi-chu" id="ghi-chu" placeholder="Ghi chú (tùy chọn)"></textarea>
+                </form>
+                <h4>Hình thức giao hàng</h4>
+                <form id="form-giao-hang">
+                    <input class="form-check-inline" type="checkbox" name="nhanh" id="nhanh"> Nhanh
+                    <input class="form-check-inline" type="checkbox" name="sieu-toc" id="sieu-toc"> Siêu tốc (Phí
+                    10.000đ)
+                </form>
+            </div>
+            <div class="col">
+                <h4>Thanh toán</h4>
+                <div id="box-banking">
+                    <form>
+                        <div>
+                            <input class="form-check-inline" type="checkbox" name="ngan-hang" id="ngan-hang">Thanh toán
+                            qua
+                            Ngân hàng
+                        </div>
+                        <div><input class="form-check-inline" type="checkbox" name="momo" id="momo">Thanh toán qua Momo
+                        </div>
+                        <div><input class="form-check-inline" type="checkbox" name="visa" id="visa">Thanh toán qua Visa
+                        </div>
+                        <div><input class="form-check-inline" type="checkbox" name="pay-pal" id="pay-pal">Thanh toán qua
+                            Paypal
+                        </div>
+                        <div><input class="form-check-inline" type="checkbox" name="zalo-pay" id="zalo-pay">Thanh toán
+                            qua
+                            ZaloPay
+                        </div>
+                        <div><input class="form-check-inline" type="checkbox" name="web-money" id="web-money">Thanh toán
+                            qua
+                            Webmoney</div>
+                    </form>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <script type="module" src="/DuAn/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

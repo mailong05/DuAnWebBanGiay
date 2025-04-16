@@ -158,9 +158,16 @@ document.addEventListener("click", function (event) {
     }
 });
 
+// Thông báo chức năng tìm kiếm
+function notificationSearch() {
+    let searchInfor = document.getElementById("search-input").value;
+    if (searchInfor.trim() === "")
+        alert("Vui lòng nhập tên sản phẩm !");
+    else
+        alert("Chức năng tìm kiếm sẽ được cập nhật trong thời gian tới!");
+}
 
-// Mảng lưu giỏ hàng
-// let cart = [];
+
 
 // Hàm hiển thị thông báo
 function showNotification(message) {

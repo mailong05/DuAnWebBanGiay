@@ -8,6 +8,8 @@
 .navbar-brand {
     font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
+    max-height: 50px;
+    max-width: 50px;
     font-weight: bold;
 }
 
@@ -17,6 +19,7 @@
 
 .navbar {
     max-height: 390px;
+    position: fixed;
 }
 
 .bi {
@@ -85,9 +88,11 @@
 @media (max-width:992px) {
     .search-box {
         position: fixed;
-        top: 44%;
-        left: 10px;
+        top: 0;
+        left: 25%;
         right: auto;
+        width: 70%;
+        z-index: 3000;
         width: 70%;
     }
 }

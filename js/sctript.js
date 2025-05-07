@@ -8,6 +8,10 @@ function checkEmail(email) {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.trim());
 }
 
+function checkPassword(password) {
+    return /^\w{8}$/.test(password.trim());
+}
+
 // Kiểm tra tên khi nhập
 function validateName() {
     const name = document.getElementById("nameSignIn").value;
@@ -18,6 +22,18 @@ function validateName() {
     } else {
         message1.textContent = "✖ Tên không hợp lệ ☹️";
         message1.style.color = "red";
+    }
+}
+
+function validatePassword() {
+    const password = document.getElementById("passwordSignIn").value;
+    const message2 = document.getElementById("message2");
+    if (checkPassword(password)) {
+        message2.textContent = "✔ Mật khẩu hợp lệ 😊";
+        message2.style.color = "green";
+    } else {
+        message2.textContent = "✖ Mật khẩu không hợp lệ ☹️";
+        message2.style.color = "red";
     }
 }
 
@@ -35,15 +51,16 @@ function validateEmail() {
         message3.style.color = "red";
     }
 }
-// Kiếm tra Input cho modal SignUp
+// Kiếm tra Input cho modal SignIn
 function checkInput() {
     const name = document.getElementById("nameSignIn").value;
     const email = document.getElementById("emailSignIn").value;
-
+    const password = document.getElementById("passwordSignIn").value;
     validateName();
     validateEmail();
+    validatePassword();
 
-    if (!checkName(name) || !checkEmail(email)) {
+    if (!checkName(name) || !checkEmail(email) || !checkPassword(password)) {
         alert("Vui lòng nhập thông tin hợp lệ!");
         return false;
     }
@@ -55,7 +72,9 @@ function checkInput() {
 function resetModal() {
     document.getElementById("nameSignIn").value = "";
     document.getElementById("emailSignIn").value = "";
+    document.getElementById("passwordSignIn").value = "";
 
+    document.getElementById("message2").textContent = "";
     document.getElementById("message1").textContent = "";
     document.getElementById("message3").textContent = "";
 }
@@ -86,6 +105,18 @@ function validateSignUpPhone() {
     }
 }
 
+function validateSignUpPassword() {
+    const password = document.getElementById("passwordSignUp").value;
+    const message4 = document.getElementById("messageSignUp4");
+    if (checkPassword(password)) {
+        message4.textContent = "✔ Mật khẩu hợp lệ 😊";
+        message4.style.color = "green";
+    } else {
+        message4.textContent = "✖ Mật khẩu không hợp lệ ☹️";
+        message4.style.color = "red";
+    }
+}
+
 // Kiểm tra email khi nhập
 function validateSignUpEmail() {
     const email = document.getElementById("emailSignUp").value;
@@ -99,17 +130,18 @@ function validateSignUpEmail() {
     }
 }
 
-// Kiếm tra Input cho modal SignUp
+// Kiếm tra Input cho modal SignUP
 function checkSignUpInput() {
     const name = document.getElementById("nameSignUp").value;
     const phone = document.getElementById("phoneSignUp").value;
     const email = document.getElementById("emailSignUp").value;
-
+    const password = document.getElementById("passwordSignUp").value;
     validateSignUpName();
     validateSignUpPhone();
     validateSignUpEmail();
+    validateSignUpPassword();
 
-    if (!checkName(name) || !checkEmail(email) || !checkPhone(phone)) {
+    if (!checkName(name) || !checkEmail(email) || !checkPhone(phone) || !checkPassword(password)) {
         alert("Vui lòng nhập thông tin hợp lệ!");
         return false;
     }
@@ -129,7 +161,9 @@ function resetSignUpModal() {
     document.getElementById("phoneSignUp").value = "";
     document.getElementById("emailSignUp").value = "";
     document.getElementById("addressSignUp").value = "";
+    document.getElementById("passwordSignUp").value = "";
 
+    document.getElementById("messageSignUp4").textContent = "";
     document.getElementById("messageSignUp1").textContent = "";
     document.getElementById("messageSignUp2").textContent = "";
     document.getElementById("messageSignUp3").textContent = "";
@@ -275,10 +309,11 @@ let registerUserInfor = {};
 // Hàm đăng ký
 function registerUser() {
     const userName = document.getElementById("nameSignUp").value.trim();
+    const userPassword = document.getElementById("passwordSignUp").value.trim();
     const userPhone = document.getElementById("phoneSignUp").value.trim();
     const userEmail = document.getElementById("emailSignUp").value.trim();
     const userAddress = document.getElementById("addressSignUp").value.trim();
-    registerUserInfor = { userName, userPhone, userEmail, userAddress };
+    registerUserInfor = { userName, userPassword, userPhone, userEmail, userAddress };
     // Lưu thông tin đăng ký vào localStorage
     localStorage.setItem("userInfo", JSON.stringify(registerUserInfor));
 }
@@ -286,12 +321,13 @@ function registerUser() {
 // Hàm đăng nhập
 function loginUser() {
     const username = document.getElementById("nameSignIn").value.trim();
+    const password = document.getElementById("passwordSignIn").value.trim();
     const email = document.getElementById("emailSignIn").value.trim();
 
     // Lấy thông tin đăng ký từ localStorage
     const storedUser = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (storedUser && username === storedUser.userName && email === storedUser.userEmail) {
+    if (storedUser && username === storedUser.userName && email === storedUser.userEmail && password === storedUser.userPassword) {
         alert("Đăng nhập thành công!");
         loggedInUser = { ...storedUser }; // lưu thông tin người dùng
         let modal = bootstrap.Modal.getInstance(document.getElementById("modalSignIn"));
@@ -312,15 +348,14 @@ function handleUserClick() {
     const modalBody = modalElement.querySelector(".modal-body");
 
     if (loggedInUser) {
-        // Hiển thị thông tin người dùng
         modalBody.innerHTML = `
             <h5>Xin chào, ${loggedInUser.userName}!</h5>
             <p>Email: ${loggedInUser.userEmail}</p>
             <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
         `;
     } else {
-        // Hiển thị lại form đăng nhập từ template
-        modalBody.innerHTML = document.getElementById("loginFormTemplate").innerHTML;
+        // Không thay đổi modalBody, chỉ reset input
+        resetModal();
     }
 
     modal.show();

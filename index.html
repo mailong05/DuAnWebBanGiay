@@ -71,14 +71,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <form><label for="name" class="form-label">Tên đăng nhập:</label>
+                        <form>
+                            <label for="name" class="form-label">Tên đăng nhập:</label>
                             <input type="text" name="name" id="nameSignIn" class="form-control" oninput="validateName()"
-                                placeholder="Nhập tên">
+                                placeholder="Nhập tên" autocomplete="username">
                             <p class="mt-3" id="message1"></p>
+
+                            <label for="password" class="form-label">Mật khẩu:</label>
+                            <input type="password" name="password" id="passwordSignIn" class="form-control"
+                                oninput="validatePassword()" placeholder="Nhập mật khẩu"
+                                autocomplete="current-password">
+                            <p class="mt-3" id="message2"></p>
 
                             <label for="email" class="form-label">Email:</label>
                             <input type="text" name="email" id="emailSignIn" class="form-control"
-                                oninput="validateEmail()" placeholder="Nhập email">
+                                oninput="validateEmail()" placeholder="Nhập email" autocomplete="email">
                             <p class="mt-3" id="message3"></p>
                             <div class="mt-3"><a class="text-decoration-none" href="">Quên mật khẩu</a></div>
                         </form>
@@ -109,6 +116,11 @@
                             <input type="text" name="name" id="nameSignUp" class="form-control"
                                 oninput="validateSignUpName()" placeholder="Nhập tên">
                             <p class="mt-3" id="messageSignUp1"></p>
+
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" name="password" id="passwordSignUp" class="form-control"
+                                oninput="validateSignUpName()" placeholder="Nhập mât khẩu">
+                            <p class="mt-3" id="messageSignUp4"></p>
 
                             <label for="phone" class="form-label">Số điện thoại:</label>
                             <input type="text" name="phone" id="phoneSignUp" class="form-control"
@@ -416,15 +428,25 @@
     </footer>
     <!-- Template ẩn dùng để reset lại form login -->
     <div id="loginFormTemplate" style="display: none;">
-        <label for="nameSignIn" class="form-label">Tên đăng nhập:</label>
-        <input type="text" id="nameSignIn" class="form-control" placeholder="Nhập tên">
-        <span id="message1"></span><br>
-        <label for="emailSignIn" class="form-label">Email:</label>
-        <input type="email" id="emailSignIn" class="form-control" placeholder="Email">
-        <span id="message3"></span><br>
+        <form>
+            <label for="nameSignInTemplate" class="form-label">Tên đăng nhập:</label>
+            <input type="text" id="nameSignInTemplate" class="form-control" placeholder="Nhập tên"
+                autocomplete="username">
+            <span id="message1Template"></span><br>
+
+            <label for="passwordSignInTemplate" class="form-label">Mật khẩu:</label>
+            <input type="password" id="passwordSignInTemplate" class="form-control" placeholder="Nhập mật khẩu"
+                autocomplete="current-password">
+            <span id="message2Template"></span><br>
+
+            <label for="emailSignInTemplate" class="form-label">Email:</label>
+            <input type="email" id="emailSignInTemplate" class="form-control" placeholder="Email" autocomplete="email">
+            <span id="message3Template"></span><br>
+        </form>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/sctript.js"></script>
+
 </body>
 
 </html>

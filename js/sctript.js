@@ -153,8 +153,11 @@ document.addEventListener("click", function (event) {
     let searchBox = document.getElementById("searchBox");
     let searchButton = document.querySelector(".bi-search"); // Nút tìm kiếm
 
-    if (!searchBox.contains(event.target) && !searchButton.contains(event.target)) {
-        searchBox.style.display = "none";
+    // Kiểm tra searchBox và searchButton tồn tại trước khi dùng .contains()
+    if (searchBox && searchButton) {
+        if (!searchBox.contains(event.target) && !searchButton.contains(event.target)) {
+            searchBox.style.display = "none";
+        }
     }
 });
 

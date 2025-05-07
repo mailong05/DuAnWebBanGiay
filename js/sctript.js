@@ -276,20 +276,21 @@ function registerUser() {
     const userEmail = document.getElementById("emailSignUp").value.trim();
     const userAddress = document.getElementById("addressSignUp").value.trim();
     registerUserInfor = { userName, userPhone, userEmail, userAddress };
-
+    // Lưu thông tin đăng ký vào localStorage
+    localStorage.setItem("userInfo", JSON.stringify(registerUserInfor));
 }
 
-
-// Khởi tạo loginModal
-let loggedInUser = null;
 // Hàm đăng nhập
 function loginUser() {
     const username = document.getElementById("nameSignIn").value.trim();
     const email = document.getElementById("emailSignIn").value.trim();
 
-    if (registerUserInfor && username === registerUserInfor.userName && email === registerUserInfor.userEmail) {
+    // Lấy thông tin đăng ký từ localStorage
+    const storedUser = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (storedUser && username === storedUser.userName && email === storedUser.userEmail) {
         alert("Đăng nhập thành công!");
-        loggedInUser = { ...registerUserInfor }; // lưu thông tin người dùng
+        loggedInUser = { ...storedUser }; // lưu thông tin người dùng
         let modal = bootstrap.Modal.getInstance(document.getElementById("modalSignIn"));
         if (modal) modal.hide();
         resetModal();
@@ -299,9 +300,7 @@ function loginUser() {
     }
 }
 
-
-
-
+let loggedInUser = null; // Thêm dòng này ở đầu file hoặc trước khi dùng loggedInUser
 
 function handleUserClick() {
     let modalElement = document.getElementById("modalSignIn");
